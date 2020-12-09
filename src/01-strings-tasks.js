@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return `Hello, ${firstName} ${lastName}`;
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -178,7 +178,7 @@ function convertToUpperCase(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  return str.split(';').join('\n ');
+  return str.split(';');
 }
 
 /**
@@ -205,7 +205,20 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-
+  const leftUp = '┌';
+  const upChar = '─';
+  const upSide = upChar.repeat(width - 2);
+  const rightUp = '┐';
+  const firstLine = `${leftUp}${upSide}${rightUp}\n`;
+  const leftDown = '└';
+  const rightDown = '┘';
+  const lastLine = `${leftDown}${upSide}${rightDown}\n`;
+  const sideChar = '│';
+  const space = ' ';
+  const body = space.repeat(width - 2);
+  const nLine = `${sideChar}${body}${sideChar}\n`;
+  const lineCount = `${nLine}`;
+  return `${firstLine}${lineCount.repeat(height - 2)}${lastLine}`;
 }
 
 
@@ -242,8 +255,10 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  if (typeof value === 'string') {
+    return true;
+  } return value instanceof String;
 }
 
 
@@ -271,8 +286,9 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cards = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦', 'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
+  return cards.indexOf(value);
 }
 
 
